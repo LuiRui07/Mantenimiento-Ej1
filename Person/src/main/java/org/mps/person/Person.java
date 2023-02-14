@@ -3,7 +3,11 @@ package org.mps.person;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ * Class representing a person with a name, age and gender.
+ *
+ * @author Luis Ruiz
+ */
 public class Person {
 
     private final String name;
@@ -12,8 +16,13 @@ public class Person {
 
     private final String gender; //Male, Female
 
-
-
+    /**
+     * Constructs a person with a name, age and gender.
+     *
+     * @param name the name of the person
+     * @param age the age of the person
+     * @param gender the gender of the person
+     */
 
     public Person(String name, int age, String gender) {
         this.name = name;
@@ -29,35 +38,31 @@ public class Person {
         return gender;
     }
 
-
-
-
-
-
-
-
-    public double[] averageAgePerGender(List<Person> persons){
-        List<Integer> males = new ArrayList<>();
-        List<Integer> females = new ArrayList<>();
-        for (int i = 0; i < persons.size(); i++){
-            if (persons.get(i).gender().equals("Male")){
-                males.add(persons.get(i).age);
+    /**
+     * Computes the average age of male and female persons in a list and returns the result in
+     * an array of two elements (the first element is the male mean age and the second one is the
+     * female mean age)
+     * @param persons
+     * @return
+     */
+    public double[] averageAgePerGender(List<Person> persons) {
+        int males = 0;
+        int females = 0;
+        int malesage = 0;
+        int femalesage = 0;
+        for (Person p : persons) {
+            if (p.gender().equals("Male")) {
+                malesage += p.age;
+                males++;
+            } else if (p.gender().equals("Female")) {
+                femalesage += p.age;
+                females++;
             } else {
-                females.add(persons.get(i).age);
+                throw new Error("Wrong Gender");
             }
         }
-        double[] res = {media(males),media(females)};
+        double[] res = {malesage/males, femalesage/females};
         return res;
-    }
-
-    private double media(List<Integer> persons){
-        int sz = persons.size();
-        double res;
-        int suma = 0;
-        for (int i = 0; i< persons.size(); i++){
-            suma += persons.get(i);
-        }
-        return suma/sz;
     }
 
 }
