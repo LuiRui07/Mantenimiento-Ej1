@@ -138,4 +138,15 @@ public class PersonTest {
         assertEquals(26.66, averages[0], 0.1);
     }
 
+    /*
+    Comprobamos que lance una excepcion si se le pasa por parametro una lista vacia.
+    */
+    @Test
+    void EmptyList() {
+        List<Person> persons = null;
+        Exception thrown = assertThrows(
+                RuntimeException.class,
+                () -> p.averageAgePerGender(persons));
+        assertTrue(thrown.getMessage().contentEquals("Empty List"));
     }
+}
