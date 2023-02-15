@@ -73,20 +73,27 @@ public class Person {
         int females = 0;
         int malesAge = 0;
         int femalesAge = 0;
-        for (Person p : persons) {
-            if (p.gender().equals("Male")) {
-                malesAge += p.age;
-                males++;
-            } else {
-                femalesAge += p.age;
-                females++;
+        if (persons != null) {
+            for (Person p : persons) {
+                if (p.gender().equals("Male")) {
+                    malesAge += p.age;
+                    males++;
+                } else {
+                    femalesAge += p.age;
+                    females++;
+                }
             }
-        }
 
             double averageMales = males == 0 ? 0 : (double) malesAge / males;
             double averageFemales = females == 0 ? 0 : (double) femalesAge / females;
-            double[] res = {averageMales, averageFemales};
+            double [] res = {averageMales, averageFemales};
             return res;
+
+        } else {
+            double [] res = {};
+            throw new RuntimeException("Empty List");
+        }
+
 
     }
 }
